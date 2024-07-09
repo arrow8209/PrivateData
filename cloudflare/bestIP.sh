@@ -46,7 +46,7 @@ rm result_*.csv
 rm $output_file
 #process_ips result_IPDB.csv
 #process_ips result_cf.csv
-#process_ips result_proxy_ip
+process_ips result_proxy_ip
 
 
 # echo "结果已保存到 $output_file"
