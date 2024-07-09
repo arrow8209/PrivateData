@@ -1,6 +1,7 @@
 #!/bin/bash
 
 dir_path = $(pwd)
+cd mnt/data/code/CloudflareSpeedTest/bin/
 
 ping_ts=150
 # 输出文件名
@@ -37,12 +38,16 @@ unset https_proxy
 
 rm result_*.csv
 
-./CloudflareST -httping -tl $ping_ts -dd -n 800 -allip -f ip_IPDB.txt  -o result_IPDB.csv
-./CloudflareST -httping -tl $ping_ts -dd -n 800  -f ip_cf.txt  -o result_cf.csv
+#./CloudflareST -httping -tl $ping_ts -dd -n 800 -allip -f ip_IPDB.txt  -o result_IPDB.csv
+#./CloudflareST -httping -tl $ping_ts -dd -n 800  -f ip_cf.txt  -o result_cf.csv
+./CloudflareST -httping -tl $ping_ts -dd -n 800 -allip -f proxy_ip.txt  -o result_proxy_ip.csv
+
 
 rm $output_file
-process_ips result_IPDB.csv
-process_ips result_cf.csv
+#process_ips result_IPDB.csv
+#process_ips result_cf.csv
+#process_ips result_proxy_ip
+
 
 # echo "结果已保存到 $output_file"
 source ~/proxy.env
