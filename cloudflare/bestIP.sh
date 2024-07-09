@@ -3,7 +3,7 @@
 dir_path = $(pwd)
 cd mnt/data/code/CloudflareSpeedTest/bin/
 
-ping_ts=150
+ping_ts=300
 # 输出文件名
 output_file="bestip.txt"
 # GeoLite2数据库路径
