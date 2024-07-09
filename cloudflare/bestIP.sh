@@ -40,7 +40,7 @@ rm result_*.csv
 
 #./CloudflareST -httping -tl $ping_ts -dd -n 800 -allip -f ip_IPDB.txt  -o result_IPDB.csv
 #./CloudflareST -httping -tl $ping_ts -dd -n 800  -f ip_cf.txt  -o result_cf.csv
-./CloudflareST -httping -tl $ping_ts -dd -n 800 -allip -f proxy_ip.txt  -o result_proxy_ip.csv
+./CloudflareST -httping -tl $ping_ts -dd -n 100 -allip -f proxy_ip.txt  -o result_proxy_ip.csv
 
 rm $output_file
 #process_ips result_IPDB.csv
