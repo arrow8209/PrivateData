@@ -3,7 +3,7 @@
 dir_path = $(pwd)
 cd /mnt/data/code/CloudflareSpeedTest/bin/
 
-ping_ts=150
+ping_ts=200
 # 输出文件名
 output_file="bestip.txt"
 # GeoLite2数据库路径
@@ -47,7 +47,8 @@ rm result_*.csv
 # ./CloudflareST -httping -tl $ping_ts -dd -n 400 -allip -f proxy_ip.txt  -o result_proxy_ip.csv
 
 # ./CloudflareST -httping -dd -tl $ping_ts -n 800 -allip -f ip_IPDB.txt  -o result_IPDB.csv
-./CloudflareST -httping -dd -tl $ping_ts -n 400 -allip -f proxy_ip.txt -o result_proxy_ip.csv
+# ./CloudflareST -httping -dd -tl $ping_ts -n 400 -allip -f proxy_ip.txt -o result_proxy_ip.csv
+./CloudflareST -dn 20 -n 400 -allip -f proxy_ip.txt -o result_proxy_ip.csv
 
 rm $output_file
 
