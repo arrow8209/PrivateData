@@ -18,8 +18,8 @@ process_ips(){
     read # 读取并跳过第一行（标题行）
     while IFS=, read -r ip sent received loss latency speed; do
         # 查询IP归属地
-        registered_country=$(mmdblookup --file GeoLite2-Country.mmdb  --ip $ip registered_country names de  | awk -F'"' '{print $2}' | tr -d '\n\r')
-        country=$(mmdblookup --file GeoLite2-Country.mmdb  --ip $ip country names de  | awk -F'"' '{print $2}' | tr -d '\n\r')
+        registered_country=$(mmdblookup --file GeoLite2-Country.mmdb  --ip $ip registered_country iso_code  | awk -F'"' '{print $2}' | tr -d '\n\r')
+        country=$(mmdblookup --file GeoLite2-Country.mmdb  --ip $ip country iso_code  | awk -F'"' '{print $2}' | tr -d '\n\r')
 
         echo "$ip#A@$registered_country@$country"
     done
