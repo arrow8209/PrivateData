@@ -9,6 +9,7 @@ output_file="bestip.txt"
 # GeoLite2数据库路径
 db_path="GeoLite2-Country.mmdb"
 
+count = 0
 process_ips(){
     # 输入文件名
     input_file="$1"
@@ -18,10 +19,21 @@ process_ips(){
     read # 读取并跳过第一行（标题行）
     while IFS=, read -r ip sent received loss latency speed; do
         # 查询IP归属地
-        registered_country=$(mmdblookup --file GeoLite2-Country.mmdb  --ip $ip registered_country iso_code  | awk -F'"' '{print $2}' | tr -d '\n\r')
+        # registered_country=$(mmdblookup --file GeoLite2-Country.mmdb  --ip $ip registered_country iso_code  | awk -F'"' '{print $2}' | tr -d '\n\r')
         country=$(mmdblookup --file GeoLite2-Country.mmdb  --ip $ip country iso_code  | awk -F'"' '{print $2}' | tr -d '\n\r')
 
-        echo "$ip#A@$registered_country@$country"
+        # 输出2位count，高位补0
+        padded_count=$(printf "%02d" $count)
+
+        if [ -z "$country" ]; then
+            country="UNKNOWN"
+            echo "$ip#UNKNOWN $padded_count"
+        else
+            echo "$ip#$country $padded_count"
+        fi
+        
+        # 自增数字
+        count=$((count+1))
     done
     } < "$input_file" >> "$output_file"
 
