@@ -53,7 +53,7 @@ rm $output_file
 
 #process_ips result_cf.csv
 # process_ips result_IPDB.csv
-# process_ips result_proxy_ip.csv
+process_ips result_proxy_ip.csv
 
 # echo "结果已保存到 $output_file"
 source ~/proxy.env
