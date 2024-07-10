@@ -3,7 +3,7 @@
 dir_path = $(pwd)
 cd mnt/data/code/CloudflareSpeedTest/bin/
 
-ping_ts=300
+ping_ts=150
 # 输出文件名
 output_file="bestip.txt"
 # GeoLite2数据库路径
@@ -30,24 +30,26 @@ process_ips(){
 source ~/proxy.env
 
 rm ip_*.txt
-#下载IPDB提供的代理IP
-wget -O ip_IPDB.txt https://github.com/ymyuuu/IPDB/raw/main/proxy.txt
 
 #下载cf CDN节点IP
 #wget -O ip_cf.txt https://www.cloudflare.com/ips-v4/#
+
+#下载IPDB提供的代理IP
+wget -O ip_IPDB.txt https://github.com/ymyuuu/IPDB/raw/main/proxy.txt
 
 unset http_proxy
 unset https_proxy
 
 rm result_*.csv
 
-# ./CloudflareST -httping -tl $ping_ts -dd -n 800 -allip -f ip_IPDB.txt  -o result_IPDB.csv
 #./CloudflareST -httping -tl $ping_ts -dd -n 800  -f ip_cf.txt  -o result_cf.csv
-./CloudflareST -httping -tl $ping_ts -dd -n 100 -allip -f proxy_ip.txt  -o result_proxy_ip.csv
+./CloudflareST -httping -tl $ping_ts -dd -n 800 -allip -f ip_IPDB.txt  -o result_IPDB.csv
+./CloudflareST -httping -tl $ping_ts -dd -n 400 -allip -f proxy_ip.txt  -o result_proxy_ip.csv
 
 rm $output_file
-#process_ips result_IPDB.csv
+
 #process_ips result_cf.csv
+process_ips result_IPDB.csv
 process_ips result_proxy_ip.csv
 
 
