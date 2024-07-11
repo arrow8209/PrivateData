@@ -60,8 +60,8 @@ rm result_*.csv
 # ./CloudflareST -httping -tl $ping_ts -dd -n 400 -allip -f proxy_ip.txt  -o result_proxy_ip.csv
 
 # ./CloudflareST -httping -dd -tl $ping_ts -n 800 -allip -f ip_IPDB.txt  -o result_IPDB.csv
-./CloudflareST -httping -dd -tl $ping_ts -n 400 -allip -f proxy_ip.txt -o result_proxy_ip.csv
-# ./CloudflareST -httping -dn 20 -dt 5 -n 400 -allip -f proxy_ip.txt -o result_proxy_ip.csv
+# ./CloudflareST -httping -dd -tl $ping_ts -n 400 -allip -f proxy_ip.txt -o result_proxy_ip.csv
+./CloudflareST -dn 20 -dt 5 -n 50 -allip -f proxy_ip.txt -o result_proxy_ip.csv -url https://download.parallels.com/desktop/v15/15.1.5-47309/ParallelsDesktop-15.1.5-47309.dmg
 
 rm $output_file
 
