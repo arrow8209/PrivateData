@@ -63,7 +63,7 @@ rm result_*.csv
 # ./CloudflareST -httping -dd -tl $ping_ts -n 400 -allip -f proxy_ip.txt -o result_proxy_ip.csv
 # ./CloudflareST -httping -dd -tl $ping_ts -n 400 -dn 20 -dt 5 -allip -f proxy_ip.txt -o result_proxy_ip.csv
 
-./CloudflareST -httping -tl $ping_ts -n 50 -dn 20 -dt 5 -allip -f proxy_ip.txt -o result_proxy_ip.csv -url https://download.parallels.com/desktop/v15/15.1.5-47309/ParallelsDesktop-15.1.5-47309.dmg
+./CloudflareST -httping -tl $ping_ts -n 50 -dn 20 -dt 5 -allip -f proxy_ip.txt -o result_proxy_ip.csv -url https://cloudflare.cdn.openbsd.org/pub/OpenBSD/7.3/src.tar.gz
 
 rm $output_file
 
