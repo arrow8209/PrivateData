@@ -85,6 +85,8 @@ rm $output_cf
 process_ips result_proxy_ip_serv00.csv $output_serv00
 process_ips result_proxy_ip_cf.csv $output_cf
 
+cat $output_cf >> $output_serv00
+
 # echo "结果已保存到 $output_file"
 source ~/proxy.env
 cp $output_serv00 /mnt/data/code/PrivateData/cloudflare
