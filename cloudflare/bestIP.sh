@@ -5,8 +5,8 @@ cd /mnt/data/code/CloudflareSpeedTest/bin/
 
 ping_ts=500
 # 输出文件名
-output_serv00="bestip1.txt"
-output_cf="bestip2.txt"
+output_1="bestip1.txt"
+output_2="bestip2.txt"
 # GeoLite2数据库路径
 db_path="GeoLite2-Country.mmdb"
 
@@ -74,23 +74,21 @@ rm result_*.csv
 #./CloudflareST -httping -dd -tl $ping_ts -n 400 -dn 20 -dt 5 -allip -url https://vl.zzz-family.cloudns.be/ -f proxy_ip.cn2.txt -o result_proxy_ip.csv
 # ./CloudflareST -httping -tl $ping_ts -n 50 -dn 60 -dt 5 -allip -f proxy_ip.txt -o result_proxy_ip.csv -url https://cloudflare.cdn.openbsd.org/pub/OpenBSD/7.3/src.tar.gz
 
-./CloudflareST -httping -dd -tl 400 -n 400 -dn 20 -dt 20 -allip -url https://serv00.zzz01.cloudns.ch/ -f proxy_ip.txt -o result_proxy_ip_serv00.csv
-./CloudflareST -httping -dd -tl 200 -n 400 -dn 20 -dt 5 -allip -url https://vl.zzz-family.cloudns.be/ -f proxy_ip.txt -o result_proxy_ip_cf.csv
+./CloudflareST -httping -dd -tl 400 -n 400 -dn 20 -dt 20 -allip -url https://vl.zzz-family.cloudns.be/ -f proxy_ip.cn2.txt -o result_proxy_ip_cn2.csv
+# ./CloudflareST -httping -dd -tl 400 -n 400 -dn 20 -dt 20 -allip -url https://vl.zzz-family.cloudns.be/ -f proxy_ip.txt -o result_proxy_ip.csv
 
-rm $output_serv00
-rm $output_cf
+rm $output_1
+rm $output_2
 
-#process_ips result_cf.csv
-# process_ips result_IPDB.csv
-process_ips result_proxy_ip_serv00.csv $output_serv00
-process_ips result_proxy_ip_cf.csv $output_cf
+process_ips result_proxy_ip_cn2.csv $output_1
+process_ips result_proxy_ip.csv $output_2
 
-cat $output_cf >> $output_serv00
+# cat $output_2 >> $output_1
 
 # echo "结果已保存到 $output_file"
 source ~/proxy.env
-cp $output_serv00 /mnt/data/code/PrivateData/cloudflare
-cp $output_cf /mnt/data/code/PrivateData/cloudflare
+cp $output_1 /mnt/data/code/PrivateData/cloudflare
+cp $output_2 /mnt/data/code/PrivateData/cloudflare
 cd /mnt/data/code/PrivateData
 git add *
 git commit -m "update cloudflare ip"
