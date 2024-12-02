@@ -20,6 +20,11 @@ process_ips(){
     {
     read # 读取并跳过第一行（标题行）
     while IFS=, read -r ip sent received loss latency speed; do
+        # 限制处理行数
+        if (( count >= 15 )); then
+            break
+        fi
+
         # 查询IP归属地
         # registered_country=$(mmdblookup --file GeoLite2-Country.mmdb  --ip $ip registered_country iso_code  | awk -F'"' '{print $2}' | tr -d '\n\r')
         country=$(mmdblookup --file GeoLite2-Country.mmdb  --ip $ip country iso_code  | awk -F'"' '{print $2}' | tr -d '\n\r')
@@ -70,7 +75,7 @@ rm result_*.csv
 # ./CloudflareST -httping -tl $ping_ts -n 50 -dn 60 -dt 5 -allip -f proxy_ip.txt -o result_proxy_ip.csv -url https://cloudflare.cdn.openbsd.org/pub/OpenBSD/7.3/src.tar.gz
 
 ./CloudflareST -httping -dd -tl 400 -n 400 -dn 20 -dt 20 -allip -url https://serv00.zzz01.cloudns.ch/ -f proxy_ip.cn2.txt -o result_proxy_ip_serv00.csv
-./CloudflareST -httping -dd -tl 110 -n 400 -dn 20 -dt 5 -allip -url https://vl.zzz-family.cloudns.be/ -f proxy_ip.txt -o result_proxy_ip_cf.csv
+./CloudflareST -httping -dd -tl 200 -n 400 -dn 20 -dt 5 -allip -url https://vl.zzz-family.cloudns.be/ -f proxy_ip.txt -o result_proxy_ip_cf.csv
 
 rm $output_serv00
 rm $output_cf
