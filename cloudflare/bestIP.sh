@@ -20,10 +20,10 @@ process_ips(){
     {
     read # 读取并跳过第一行（标题行）
     while IFS=, read -r ip sent received loss latency speed; do
-        # 限制处理行数
-        if (( count >= 15 )); then
-            break
-        fi
+        # # 限制处理行数
+        # if (( count >= 15 )); then
+        #     break
+        # fi
 
         # 查询IP归属地
         # registered_country=$(mmdblookup --file GeoLite2-Country.mmdb  --ip $ip registered_country iso_code  | awk -F'"' '{print $2}' | tr -d '\n\r')
