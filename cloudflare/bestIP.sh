@@ -1,18 +1,19 @@
 #!/bin/bash
 
-dir_path = $(pwd)
+dir_path=$(pwd)
 cd /mnt/data/code/CloudflareSpeedTest/bin/
 
 ping_ts=500
 # 输出文件名
-output_file="bestip.txt"
+output_serv00="bestip.txt"
 # GeoLite2数据库路径
 db_path="GeoLite2-Country.mmdb"
 
-count = 0
+count=0
 process_ips(){
     # 输入文件名
     input_file="$1"
+    output_file="$2"
 
     # 读取文件内容并解析IP地址
     {
@@ -67,15 +68,15 @@ rm result_*.csv
 ./CloudflareST -httping -dd -tl $ping_ts -n 400 -dn 20 -dt 5 -allip -url https://vl.zzz-family.cloudns.be/ -f proxy_ip.cn2.txt -o result_proxy_ip.csv
 # ./CloudflareST -httping -tl $ping_ts -n 50 -dn 60 -dt 5 -allip -f proxy_ip.txt -o result_proxy_ip.csv -url https://cloudflare.cdn.openbsd.org/pub/OpenBSD/7.3/src.tar.gz
 
-rm $output_file
+rm $output_serv00
 
 #process_ips result_cf.csv
 # process_ips result_IPDB.csv
-process_ips result_proxy_ip.csv
+process_ips result_proxy_ip.csv $output_serv00
 
 # echo "结果已保存到 $output_file"
 source ~/proxy.env
-cp $output_file /mnt/data/code/PrivateData/cloudflare
+cp $output_serv00 /mnt/data/code/PrivateData/cloudflare
 cd /mnt/data/code/PrivateData
 git add *
 git commit -m "update cloudflare ip"
