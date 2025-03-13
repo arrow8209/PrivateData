@@ -75,7 +75,7 @@ rm result_*.csv
 # ./CloudflareST -httping -tl $ping_ts -n 50 -dn 60 -dt 5 -allip -f proxy_ip.txt -o result_proxy_ip.csv -url https://cloudflare.cdn.openbsd.org/pub/OpenBSD/7.3/src.tar.gz
 
 # ./CloudflareST -httping -dd -tl 400 -n 400 -dn 20 -dt 20 -allip -url http://s6.mimipig0917.serv00.net/ -f proxy_ip.cn2.txt -o result_proxy_ip_cn2.csv
-./CloudflareST -httping -dd -tl 400 -n 400 -dn 20 -dt 20 -allip -httping -url http://mimipig0917-serv00.zzz01.cloudns.ch/ -f proxy_ip.txt -o result_proxy_ip.csv
+./CloudflareST -httping -tl 400 -n 400 -dn 20 -dt 20 -allip -url https://mimipig0917.serv00.net/filename.bin -f proxy_ip.txt -o result_proxy_ip.csv
 
 rm $output_1
 rm $output_2
